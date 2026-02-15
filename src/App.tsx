@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { initPurger } from '../../content-script';
-import ControlPanel from './ControlPanel'
-import { useSettings } from './useSettings';
-import { DEFAULTS, type Settings } from './constants';
+import { initPurger } from './services/FilterEngine';
+import ControlPanel from './components/ControlPanel';
+import NNLButton from './components/NNLButton';
+import { useSettings } from './components/useSettings';
+import { DEFAULTS, type Settings } from './components/constants';
 
-const icon32 = chrome.runtime.getURL('images/no-noise-linkedin-logo-dark.svg');
 
 export function getFirstPathSegment(urlString: string): string | null {
   try {
@@ -20,7 +20,6 @@ export function getFirstPathSegment(urlString: string): string | null {
 
 export default function App() {
   const [showPanel, setShowPanel] = useState(false);
-  const [hover, setHover] = useState(false);
   const { area, getAll } = useSettings();
   const [userSettings, setUserSettings] = useState<Settings>(DEFAULTS);
 
@@ -93,33 +92,9 @@ export default function App() {
 
   return (
     <div
-      style={{ position: 'fixed', bottom: 32, left: 32, zIndex: 2147483647, pointerEvents: 'auto' }}
+      className="nnl-main-container"
     >
-      <div>
-        <button
-          onClick={() => {
-            setShowPanel((prev) => !prev);
-          }}
-          title='No Noise LinkedIn Control panel'
-          style={{ background: 'transparent', border: 'none', padding: 0, margin: 0, lineHeight: 0, boxShadow: 'none', cursor: 'pointer', display: 'inline-block' }}
-        >
-          <img
-            src={icon32}
-            alt="No Noise LinkedIn Control panel"
-            width={32}
-            height={32}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-            style={{
-              display: 'block',
-              borderRadius: 4,
-              filter: `brightness(${(showPanel ? 100 : 70)}%) drop-shadow(0 0 0 rgba(255, 255, 255, 0.35))`,
-              transition: 'filter .2s ease, transform .2s ease',
-              transform: hover ? 'translateY(-1px)' : 'translateY(0)'
-            }}
-          />
-        </button>
-      </div>
+      <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} />
       {showPanel && (
         <ControlPanel closePanel={() => { setShowPanel(false) }} hardRefresh={reloadExtension} userSettings={userSettings} />
       )}
