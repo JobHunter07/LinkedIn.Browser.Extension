@@ -1,4 +1,38 @@
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */
+.nnl-main-container {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  z-index: 2147483647;
+  pointer-events: auto;
+}
+
+.nnl-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.nnl-button-icon {
+  display: block;
+  border-radius: 4px;
+  filter: brightness(70%) drop-shadow(0 0 0 rgba(255, 255, 255, 0.35));
+  transition: filter .2s ease, transform .2s ease;
+}
+
+.nnl-button-icon:hover {
+  transform: translateY(-1px);
+}
+
+.nnl-button-icon.active {
+  filter: brightness(100%) drop-shadow(0 0 0 rgba(255, 255, 255, 0.35));
+}
+
 .nnl-cp {
   --nnl-accent: #0076DF;
   --nnl-muted: #6b6b70;
@@ -218,3 +252,4 @@
   font-size: 12px;
   line-height: 1.25;
 }
+
