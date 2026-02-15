@@ -40,6 +40,45 @@
 
   /* Gray Light Color: Used for pill hover and light dividers */
   --nnl-gray-light: rgba(229, 231, 235, 1); /* #e5e7eb */
+
+
+  /*
+   * Dark Theme Color Constants (RGBA Format)
+   * ----------------------------------------
+   */
+
+  /* Primary Accent Color - Dark */
+  --nnl-accent-dark: rgba(10, 132, 255, 1); /* #0A84FF */
+
+  /* Secondary Accent Color - Dark */
+  --nnl-accent-secondary-dark: rgba(94, 92, 230, 1); /* #5E5CE6 */
+
+  /* Primary Text Color - Dark */
+  --nnl-text-primary-dark: rgba(245, 245, 247, 1); /* #F5F5F7 */
+
+  /* Secondary Text Color - Dark */
+  --nnl-text-secondary-dark: rgba(142, 142, 147, 1); /* #8E8E93 */
+
+  /* Muted Text Color - Dark */
+  --nnl-text-muted-dark: rgba(152, 152, 157, 1); /* #98989D */
+
+  /* Surface Color - Dark */
+  --nnl-surface-dark: rgba(28, 28, 30, 1); /* #1C1C1E */
+
+  /* Black Color - Dark (Used for shadows) */
+  --nnl-black-dark: rgba(0, 0, 0, 1); /* #000000 */
+
+  /* Separator Color - Dark */
+  --nnl-separator-dark: rgba(84, 84, 88, 1); /* #545458 */
+
+  /* Interactive Gray Color - Dark */
+  --nnl-gray-interactive-dark: rgba(99, 99, 102, 1); /* #636366 */
+
+  /* Pill Background Color - Dark */
+  --nnl-pill-bg-dark: rgba(44, 44, 46, 1); /* #2C2C2E */
+
+  /* Gray Light Color - Dark */
+  --nnl-gray-light-dark: rgba(58, 58, 60, 1); /* #3A3A3C */
 }
 
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */

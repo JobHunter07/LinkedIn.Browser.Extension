@@ -19,10 +19,7 @@ export function useSettings() {
   const area: StorageArea = 'sync';
   const defaults: Settings = DEFAULTS;
 
-  const [, setSettings] = useState<Settings>(defaults);
-
   useEffect(() => {
-    getAll(area, defaults).then((data) => setSettings(data));
 
     const onChanged = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: chrome.storage.AreaName) => {
       if (areaName !== area) return;
@@ -35,10 +32,6 @@ export function useSettings() {
             (updated as any)[key] = (change as any).newValue;
           }
         }
-      }
-
-      if (Object.keys(updated).length > 0) {
-        setSettings((prev) => ({ ...prev, ...updated }));
       }
     };
 
@@ -53,7 +46,6 @@ export function useSettings() {
   }, [area]);
 
   const setSetting = useCallback(async (key: keyof Settings, value: boolean) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
     await setPartial(area, { [key]: value });
   }, [area]);
 
