@@ -48,10 +48,9 @@
    */
 
   /* Primary Accent Color - Dark */
-  --nnl-accent-dark: rgba(10, 132, 255, 1); /* #0A84FF */
-
+  --nnl-accent-dark: rgba(0, 118, 223, 1); /* #0076DF */
   /* Secondary Accent Color - Dark */
-  --nnl-accent-secondary-dark: rgba(94, 92, 230, 1); /* #5E5CE6 */
+  --nnl-accent-secondary-dark: rgba(10, 132, 255, 1); /* #0A84FF */
 
   /* Primary Text Color - Dark */
   --nnl-text-primary-dark: rgba(245, 245, 247, 1); /* #F5F5F7 */

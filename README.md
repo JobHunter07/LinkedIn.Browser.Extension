@@ -12,6 +12,7 @@ No Noise LinkedIn is a browser extension that declutters your LinkedIn experienc
 - Removes **Promoted** Posts from your LinkedIn feed.
 - Block LinkedIn News and ad modules across the site.
 - **Focus Mode**: Hide the entire feed to stay distraction-free.
+- **Dark/Light Theme**: Seamlessly switch between dark and light themes.
 - Lightweight, open source, and privacy-friendly — no tracking!
 
 ### Control Panel
@@ -70,18 +71,27 @@ Option B: Build from source locally
 
 ```
 ├── src/
-│   ├── content-script/
-│   │   ├── index.tsx         # Mounts the React app into the page via Shadow DOM
-│   │   ├── App.tsx           # Hosts the floating button, settings wiring, and logic
+│   ├── components/
 │   │   ├── ControlPanel.tsx  # React-based UI with toggles (Promoted, Feed, etc.)
-│   │   ├── useSettings.ts    # Utilities for reading/writing settings in chrome.storage
-│   │   └── constants.ts      # Settings types and defaults
-│   └── types/
-│       └── images.d.ts       # Type definitions for images
+│   │   ├── ControlPanelRow.tsx # Reusable UI row for control panel
+│   │   ├── Footer.tsx        # Footer component
+│   │   ├── Header.tsx        # Header component
+│   │   ├── NNLButton.tsx     # NNL button component
+│   │   ├── Reload.tsx        # Reload prompt component
+│   │   ├── Switch.tsx        # Toggle switch component
+│   │   ├── constants.ts      # Settings types and defaults
+│   │   └── useSettings.ts    # Utilities for reading/writing settings in chrome.storage
+│   ├── services/
+│   │   └── FilterEngine.ts   # Core logic for filtering posts
+│   ├── types/
+│   │   ├── css-raw.d.ts      # CSS raw import types
+│   │   ├── images.d.ts       # Type definitions for images
+│   ├── App.tsx               # Hosts the floating button, settings wiring, and logic
+│   ├── index.tsx             # Mounts the React app into the page via Shadow DOM
+│   └── style.css             # Global styles
 ├── images/                   # Extension icons (16/32/48/128)
 ├── assets/                   # Project images and screenshots used in README
 ├── dist/                     # Production build output (Load this as unpacked)
-├── content-script.ts         # Core filtering logic (finds Suggested/Promoted posts)
 ├── index.html                # Extension popup entry (default_popup)
 ├── manifest.json             # Chrome extension configuration (MV3)
 ├── vite.config.ts            # Vite build configuration
