@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { DEFAULTS, Settings, StorageArea } from './constants';
 
 async function getAll(area: StorageArea, defaults: Settings): Promise<Settings> {
@@ -40,10 +40,6 @@ export function useSettings() {
       chrome.storage.onChanged.removeListener(onChanged);
     };
   }, [area, defaults]);
-
-  const save = useCallback(async (partial: Partial<Settings>) => {
-    await setPartial(area, partial);
-  }, [area]);
 
   const setSetting = useCallback(async (key: keyof Settings, value: boolean) => {
     await setPartial(area, { [key]: value });

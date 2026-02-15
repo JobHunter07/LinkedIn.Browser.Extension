@@ -167,10 +167,9 @@
   letter-spacing: -0.015em;
 }
 
-.nnl-cp .nnl-cp-close {
+.nnl-cp .nnl-cp-header-btn {
   position: absolute;
   top: 2px;
-  right: 2px;
   border: none;
   background: transparent;
   width: 26px;
@@ -183,11 +182,21 @@
   color: var(--nnl-text-primary);
   transition: background-color .2s ease, color .2s ease;
 }
-.nnl-cp .nnl-cp-close:hover {
+
+.nnl-cp .nnl-cp-header-btn:hover {
   background: color-mix(in srgb, var(--nnl-separator) 12%, transparent);
 }
-.nnl-cp .nnl-cp-close:active {
+
+.nnl-cp .nnl-cp-header-btn:active {
   background: color-mix(in srgb, var(--nnl-separator) 18%, transparent);
+}
+
+.nnl-cp .nnl-cp-close {
+  right: 2px;
+}
+
+.nnl-cp .nnl-cp-theme-toggle {
+  left: 2px;
 }
 
 .nnl-cp .nnl-cp-section {
