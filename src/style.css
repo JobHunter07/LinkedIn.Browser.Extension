@@ -113,7 +113,7 @@
 }
 
 .nnl-cp .nnl-cp-section {
-  padding-top: 10px;
+  padding-top: 8px;
   margin-top: 10px;
   border-top: 0.5px solid var(--nnl-sep);
 }
@@ -157,6 +157,7 @@
     inset 0 -1px 0 rgba(0,0,0,0.04);
   transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
   flex: 0 0 46px;
+  cursor: pointer;
 }
 
 .nnl-cp .nnl-cp-knob {
@@ -267,10 +268,13 @@
   min-width: 0;
 }
 
-.nnl-cp .nnl-cp-desc {
+.nnl-cp .nnl-cp-section::before {
+  content: attr(data-title);
+  display: block;
   color: var(--nnl-muted);
   font-weight: 400;
   font-size: 12px;
   line-height: 1.25;
+  padding: 0 4px 6px;
 }
 
