@@ -1,3 +1,47 @@
+:root {
+  /*
+   * Color Constants (RGBA Format)
+   * -----------------------------
+   * These variables store the raw RGBA values for all colors used in the application.
+   * They are intended to be used directly as var(--variable-name).
+   * For opacity adjustments, use color-mix(in srgb, var(--variable-name) <percentage>%, transparent).
+   */
+
+  /* Primary Accent Color: Used for active states, primary buttons, and highlights */
+  --nnl-accent: rgba(0, 118, 223, 1); /* #0076DF */
+
+  /* Secondary Accent Color: Used for switch active borders and focus rings */
+  --nnl-accent-secondary: rgba(10, 132, 255, 1); /* #0A84FF */
+
+  /* Primary Text Color: Used for main headings and body text */
+  --nnl-text-primary: rgba(29, 29, 31, 1); /* #1d1d1f */
+
+  /* Secondary Text Color: Used for secondary text, metadata, and icons */
+  --nnl-text-secondary: rgba(142, 142, 147, 1); /* #8e8e93 */
+
+  /* Muted Text Color: Used for helper text, labels, and disabled states */
+  --nnl-text-muted: rgba(107, 107, 112, 1); /* #6b6b70 */
+
+  /* Surface Color: Used for backgrounds, cards, and knobs */
+  --nnl-surface: rgba(255, 255, 255, 1); /* #FFFFFF */
+
+  /* Black Color: Used for shadows and dark borders */
+  --nnl-black: rgba(0, 0, 0, 1); /* #000000 */
+
+  /* Separator Color: Used for dividers and subtle borders (based on system gray) */
+  --nnl-separator: rgba(60, 60, 67, 1); /* #3C3C43 */
+
+  /* Interactive Gray Color: Used for hover backgrounds and switch tracks */
+  --nnl-gray-interactive: rgba(120, 120, 128, 1); /* #787880 */
+
+
+  /* Pill Background Color: Used for pill background */
+  --nnl-pill-bg: rgba(243, 244, 246, 1); /* #f3f4f6 */
+
+  /* Gray Light Color: Used for pill hover and light dividers */
+  --nnl-gray-light: rgba(229, 231, 235, 1); /* #e5e7eb */
+}
+
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */
 .nnl-main-container {
   position: fixed;
@@ -21,7 +65,7 @@
 .nnl-button-icon {
   display: block;
   border-radius: 4px;
-  filter: brightness(70%) drop-shadow(0 0 0 rgba(255, 255, 255, 0.35));
+  filter: brightness(70%) drop-shadow(0 0 0 color-mix(in srgb, var(--nnl-surface) 35%, transparent));
   transition: filter .2s ease, transform .2s ease;
 }
 
@@ -30,24 +74,19 @@
 }
 
 .nnl-button-icon.active {
-  filter: brightness(100%) drop-shadow(0 0 0 rgba(255, 255, 255, 0.35));
+  filter: brightness(100%) drop-shadow(0 0 0 color-mix(in srgb, var(--nnl-surface) 35%, transparent));
 }
 
 .nnl-cp {
-  --nnl-accent: #0076DF;
-  --nnl-muted: #6b6b70;
-  --nnl-sep: rgba(60,60,67,0.12);
-  --nnl-surface: rgb(255, 255, 255);
-
   position: fixed;
   bottom: 76px;
   left: 32px;
   width: 280px;
-  background: rgba(255, 255, 255);
-  color: #1d1d1f;
-  border: 1px solid rgba(0,0,0,0.08);
+  background: var(--nnl-surface);
+  color: var(--nnl-text-primary);
+  border: 1px solid color-mix(in srgb, var(--nnl-black) 8%, transparent);
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.20), inset 0 0.5px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--nnl-black) 20%, transparent), inset 0 0.5px 0 color-mix(in srgb, var(--nnl-surface) 80%, transparent);
   padding: 12px;
   z-index: 2147483647;
   pointer-events: auto;
@@ -77,15 +116,14 @@
 
 .nnl-cp .nnl-cp-title .brand {
   font-size: 13px;
-  /* color: var(--nnl-muted); */
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   font-weight: 500;
 }
 
 .nnl-cp .nnl-cp-title .panel {
   font-size: 16px;
   font-weight: 700;
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   letter-spacing: -0.015em;
 }
 
@@ -102,20 +140,20 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   transition: background-color .2s ease, color .2s ease;
 }
 .nnl-cp .nnl-cp-close:hover {
-  background: rgba(60,60,67,0.12);
+  background: color-mix(in srgb, var(--nnl-separator) 12%, transparent);
 }
 .nnl-cp .nnl-cp-close:active {
-  background: rgba(60,60,67,0.18);
+  background: color-mix(in srgb, var(--nnl-separator) 18%, transparent);
 }
 
 .nnl-cp .nnl-cp-section {
   padding-top: 8px;
   margin-top: 10px;
-  border-top: 0.5px solid var(--nnl-sep);
+  border-top: 0.5px solid color-mix(in srgb, var(--nnl-separator) 12%, transparent);
 }
 
 .nnl-cp .nnl-cp-row {
@@ -130,11 +168,11 @@
   transition: background-color .2s ease;
 }
 .nnl-cp .nnl-cp-row:hover {
-  background: rgba(120,120,128,0.08);
+  background: color-mix(in srgb, var(--nnl-gray-interactive) 8%, transparent);
 }
 
 .nnl-cp .nnl-cp-label {
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   font-weight: 500;
 }
 
@@ -151,10 +189,10 @@
   width: 46px;
   height: 26px;
   border-radius: 999px;
-  background: rgba(120,120,128,0.16);
-  border: 1px solid rgba(0,0,0,0.12);
+  background: color-mix(in srgb, var(--nnl-gray-interactive) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nnl-black) 12%, transparent);
   box-shadow:
-    inset 0 -1px 0 rgba(0,0,0,0.04);
+    inset 0 -1px 0 color-mix(in srgb, var(--nnl-black) 4%, transparent);
   transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
   flex: 0 0 46px;
   cursor: pointer;
@@ -167,25 +205,25 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--nnl-surface);
   box-shadow:
-    0 1px 2px rgba(0,0,0,0.15),
-    0 0 0 0.5px rgba(0,0,0,0.04);
+    0 1px 2px color-mix(in srgb, var(--nnl-black) 15%, transparent),
+    0 0 0 0.5px color-mix(in srgb, var(--nnl-black) 4%, transparent);
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .nnl-cp .nnl-cp-row input[type="checkbox"]:checked + .nnl-cp-switch {
   background: var(--nnl-accent);
-  border-color: rgba(10,132,255,0.8);
+  border-color: color-mix(in srgb, var(--nnl-accent-secondary) 80%, transparent);
   box-shadow:
-    0 0 0 0 rgba(10,132,255,0.0);
+    0 0 0 0 transparent;
 }
 
 .nnl-cp .nnl-cp-row input[type="checkbox"]:checked + .nnl-cp-switch .nnl-cp-knob {
   transform: translateX(20px);
   box-shadow:
-    0 1px 2px rgba(0,0,0,0.20),
-    0 0 0 0.5px rgba(0,0,0,0.05);
+    0 1px 2px color-mix(in srgb, var(--nnl-black) 20%, transparent),
+    0 0 0 0.5px color-mix(in srgb, var(--nnl-black) 5%, transparent);
 }
 
 .nnl-cp .nnl-cp-actions {
@@ -209,50 +247,67 @@
   color: var(--nnl-surface);
 }
 .nnl-cp .nnl-cp-button:active {
-  background: rgba(10,132,255,0.12);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+  background: color-mix(in srgb, var(--nnl-accent-secondary) 12%, transparent);
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--nnl-black) 8%, transparent);
   border-color: var(--nnl-accent);
   color: var(--nnl-accent);
 }
 
 .nnl-cp .nnl-cp-button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(10,132,255,0.3);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--nnl-accent-secondary) 30%, transparent);
 }
 
 .nnl-cp .nnl-cp-social-text a {
-  color: #8e8e93;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--nnl-text-secondary);
   transition: color .2s ease, transform .2s ease;
 }
+
 .nnl-cp .nnl-cp-social-text a:hover {
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   transform: translateY(-0.5px);
+}
+
+.nnl-cp .nnl-cp-footer .nnl-cp-desc {
+  text-align: center;
 }
 
 .nnl-cp .nnl-cp-social {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 10px;
+  margin: 0;
 }
 
 .nnl-cp .nnl-cp-social a {
-  color: #8e8e93;
+  color: var(--nnl-text-secondary);
   display: flex;
   align-items: center;
   transition: color .2s ease, transform .2s ease;
 }
 .nnl-cp .nnl-cp-social a:hover {
-  color: #1d1d1f;
+  color: var(--nnl-text-primary);
   transform: translateY(-0.5px);
 }
 
 .nnl-cp .nnl-cp-pill {
-  color: #8e8e93;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background-color: var(--nnl-pill-bg);
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nnl-text-secondary);
   transition: color .2s ease, transform .2s ease, background-color .2s ease;
 }
 .nnl-cp .nnl-cp-pill:hover {
-  color: #1d1d1f;
-  background-color: #e5e7eb;
+  color: var(--nnl-text-primary);
+  background-color: var(--nnl-gray-light);
   transform: translateY(-0.5px);
 }
 .nnl-cp .nnl-cp-pill:active {
@@ -271,10 +326,40 @@
 .nnl-cp .nnl-cp-section::before {
   content: attr(data-title);
   display: block;
-  color: var(--nnl-muted);
+  color: var(--nnl-text-muted);
   font-weight: 400;
   font-size: 12px;
   line-height: 1.25;
   padding: 0 4px 6px;
 }
 
+/* Footer styles */
+.nnl-cp .nnl-cp-footer {
+  padding-top: 16px;
+  padding-bottom: 4px;
+}
+
+.nnl-cp .nnl-cp-desc {
+  text-align: start;
+  padding: 0 0 10px;
+  font-size: 12px;
+}
+
+.nnl-cp .nnl-cp-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.nnl-cp .nnl-cp-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nnl-cp .nnl-cp-divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--nnl-gray-light);
+}
