@@ -1,26 +1,28 @@
-
 import { X, Moon, Sun } from 'lucide-react';
-import { useState } from 'react';
+import type { Settings } from './constants';
 
 type HeaderProps = {
     closePanel: () => void;
+    theme: Settings['theme'];
+    toggleTheme: () => void;
 };
 
-export default function Header({ closePanel }: HeaderProps) {
-    const [isDark, setIsDark] = useState(false);
+export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) {
+    const isDark = theme === 'LIGHT';
+
     return (
         <div className="nnl-cp-header">
             <button
                 type="button"
-                onClick={() => setIsDark(!isDark)}
+                onClick={toggleTheme}
                 className="nnl-cp-header-btn nnl-cp-theme-toggle"
                 aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
                 title={isDark ? "Light mode" : "Dark mode"}
             >
                 {isDark ? (
-                    <Sun size={14} strokeWidth={2.5} />
-                ) : (
                     <Moon size={14} strokeWidth={2.5} />
+                ) : (
+                    <Sun size={14} strokeWidth={2.5} />
                 )}
             </button>
             <div className="nnl-cp-title">

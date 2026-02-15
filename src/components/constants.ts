@@ -3,6 +3,7 @@ export type Settings = {
   disableSuggested: boolean;
   disableNews: boolean;
   disableFeed: boolean;
+  theme: 'LIGHT' | 'DARK';
 };
 
 export const DEFAULTS: Settings = {
@@ -10,6 +11,7 @@ export const DEFAULTS: Settings = {
   disableSuggested: true,
   disableNews: true,
   disableFeed: false,
+  theme: 'LIGHT',
 };
 
 export type StorageArea = 'sync' | 'local';

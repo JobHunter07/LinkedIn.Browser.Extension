@@ -81,6 +81,20 @@
   --nnl-gray-light-dark: rgba(58, 58, 60, 1); /* #3A3A3C */
 }
 
+[data-theme='DARK'] {
+  --nnl-accent: var(--nnl-accent-dark);
+  --nnl-accent-secondary: var(--nnl-accent-secondary-dark);
+  --nnl-text-primary: var(--nnl-text-primary-dark);
+  --nnl-text-secondary: var(--nnl-text-secondary-dark);
+  --nnl-text-muted: var(--nnl-text-muted-dark);
+  --nnl-surface: var(--nnl-surface-dark);
+  --nnl-black: var(--nnl-black-dark);
+  --nnl-separator: var(--nnl-separator-dark);
+  --nnl-gray-interactive: var(--nnl-gray-interactive-dark);
+  --nnl-pill-bg: var(--nnl-pill-bg-dark);
+  --nnl-gray-light: var(--nnl-gray-light-dark);
+}
+
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */
 .nnl-main-container {
   position: fixed;

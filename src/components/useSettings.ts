@@ -41,7 +41,8 @@ export function useSettings() {
     };
   }, [area, defaults]);
 
-  const setSetting = useCallback(async (key: keyof Settings, value: boolean) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const setSetting = useCallback(async <K extends keyof Settings>(key: K, value: Settings[K]) => {
     await setPartial(area, { [key]: value });
   }, [area]);
 

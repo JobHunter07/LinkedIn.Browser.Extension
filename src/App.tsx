@@ -93,6 +93,7 @@ export default function App() {
   return (
     <div
       className="nnl-main-container"
+      data-theme={userSettings.theme}
     >
       <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} />
       {showPanel && (
