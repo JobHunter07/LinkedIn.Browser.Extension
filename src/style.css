@@ -40,6 +40,59 @@
 
   /* Gray Light Color: Used for pill hover and light dividers */
   --nnl-gray-light: rgba(229, 231, 235, 1); /* #e5e7eb */
+
+
+  /*
+   * Dark Theme Color Constants (RGBA Format)
+   * ----------------------------------------
+   */
+
+  /* Primary Accent Color - Dark */
+  --nnl-accent-dark: rgba(10, 132, 255, 1); /* #0A84FF */
+
+  /* Secondary Accent Color - Dark */
+  --nnl-accent-secondary-dark: rgba(94, 92, 230, 1); /* #5E5CE6 */
+
+  /* Primary Text Color - Dark */
+  --nnl-text-primary-dark: rgba(245, 245, 247, 1); /* #F5F5F7 */
+
+  /* Secondary Text Color - Dark */
+  --nnl-text-secondary-dark: rgba(142, 142, 147, 1); /* #8E8E93 */
+
+  /* Muted Text Color - Dark */
+  --nnl-text-muted-dark: rgba(152, 152, 157, 1); /* #98989D */
+
+  /* Surface Color - Dark */
+  --nnl-surface-dark: rgba(28, 28, 30, 0.70); /* #1C1C1E with 70% opacity */
+
+  /* Black Color - Dark (Used for shadows) */
+  --nnl-black-dark: rgba(0, 0, 0, 1); /* #000000 */
+
+  /* Separator Color - Dark */
+  --nnl-separator-dark: rgb(255, 255, 255); /* #545458 with 60% opacity */
+
+  /* Interactive Gray Color - Dark */
+  --nnl-gray-interactive-dark: rgba(99, 99, 102, 0.80); /* #636366 with 80% opacity */
+
+  /* Pill Background Color - Dark */
+  --nnl-pill-bg-dark: rgba(44, 44, 46, 0.50); /* #2C2C2E with 50% opacity */
+
+  /* Gray Light Color - Dark */
+  --nnl-gray-light-dark: rgba(58, 58, 60, 1); /* #3A3A3C */
+}
+
+[data-theme='DARK'] {
+  --nnl-accent: var(--nnl-accent-dark);
+  --nnl-accent-secondary: var(--nnl-accent-secondary-dark);
+  --nnl-text-primary: var(--nnl-text-primary-dark);
+  --nnl-text-secondary: var(--nnl-text-secondary-dark);
+  --nnl-text-muted: var(--nnl-text-muted-dark);
+  --nnl-surface: var(--nnl-surface-dark);
+  --nnl-black: var(--nnl-black-dark);
+  --nnl-separator: var(--nnl-separator-dark);
+  --nnl-gray-interactive: var(--nnl-gray-interactive-dark);
+  --nnl-pill-bg: var(--nnl-pill-bg-dark);
+  --nnl-gray-light: var(--nnl-gray-light-dark);
 }
 
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */
@@ -128,10 +181,9 @@
   letter-spacing: -0.015em;
 }
 
-.nnl-cp .nnl-cp-close {
+.nnl-cp .nnl-cp-header-btn {
   position: absolute;
   top: 2px;
-  right: 2px;
   border: none;
   background: transparent;
   width: 26px;
@@ -141,14 +193,26 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--nnl-text-primary);
-  transition: background-color .2s ease, color .2s ease;
+  color: var(--nnl-text-secondary);
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
 }
-.nnl-cp .nnl-cp-close:hover {
+
+.nnl-cp .nnl-cp-header-btn:hover {
   background: color-mix(in srgb, var(--nnl-separator) 12%, transparent);
+  color: var(--nnl-text-primary);
+  transform: translateY(-2px);
 }
-.nnl-cp .nnl-cp-close:active {
+
+.nnl-cp .nnl-cp-header-btn:active {
   background: color-mix(in srgb, var(--nnl-separator) 18%, transparent);
+}
+
+.nnl-cp .nnl-cp-close {
+  right: 2px;
+}
+
+.nnl-cp .nnl-cp-theme-toggle {
+  left: 2px;
 }
 
 .nnl-cp .nnl-cp-section {
@@ -268,7 +332,7 @@
 
 .nnl-cp .nnl-cp-social-text a:hover {
   color: var(--nnl-text-primary);
-  transform: translateY(-0.5px);
+  transform: translateY(-2px);
 }
 
 .nnl-cp .nnl-cp-footer .nnl-cp-desc {
@@ -290,7 +354,7 @@
 }
 .nnl-cp .nnl-cp-social a:hover {
   color: var(--nnl-text-primary);
-  transform: translateY(-0.5px);
+  transform: translateY(-2px);
 }
 
 .nnl-cp .nnl-cp-pill {
@@ -309,7 +373,7 @@
 .nnl-cp .nnl-cp-pill:hover {
   color: var(--nnl-text-primary);
   background-color: var(--nnl-gray-light);
-  transform: translateY(-0.5px);
+  transform: translateY(-2px);
 }
 .nnl-cp .nnl-cp-pill:active {
   transform: translateY(0);

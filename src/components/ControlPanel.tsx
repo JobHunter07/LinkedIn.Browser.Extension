@@ -24,7 +24,14 @@ export default function ControlPanel(props: ControlPanelProps) {
 
   return (
     <div className="nnl-cp">
-      <Header closePanel={props.closePanel} />
+      <Header
+        closePanel={props.closePanel}
+        theme={props.userSettings.theme}
+        toggleTheme={async () => {
+          const newTheme = props.userSettings.theme === 'DARK' ? 'LIGHT' : 'DARK';
+          await setSetting('theme', newTheme);
+        }}
+      />
       <div className="nnl-cp-section" data-title="LinkedIn Feed">
         <ControlPanelRow
           primaryText={<span>Disable <strong>Promoted</strong> Posts</span>}

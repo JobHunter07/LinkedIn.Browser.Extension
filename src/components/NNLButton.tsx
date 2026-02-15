@@ -1,24 +1,26 @@
 interface NNLButtonProps {
     showPanel: boolean;
     onToggle: () => void;
+    theme: 'LIGHT' | 'DARK';
 }
 
-export default function NNLButton({ showPanel, onToggle }: NNLButtonProps) {
+export default function NNLButton(props: NNLButtonProps) {
 
-    const icon32 = chrome.runtime.getURL('images/no-noise-linkedin-logo-dark.svg');
+    const icon32light = chrome.runtime.getURL('images/no-noise-linkedin-logo-light.svg');
+    const icon32dark = chrome.runtime.getURL('images/no-noise-linkedin-logo-dark.svg');
 
     return (
         <button
-            onClick={onToggle}
+            onClick={props.onToggle}
             title='No Noise LinkedIn Control panel'
             className="nnl-button"
         >
             <img
-                src={icon32}
+                src={props.theme === 'LIGHT' ? icon32light : icon32dark}
                 alt="No Noise LinkedIn Control panel"
                 width={32}
                 height={32}
-                className={`nnl-button-icon ${showPanel ? 'active' : ''}`}
+                className={`nnl-button-icon ${props.showPanel ? 'active' : ''}`}
             />
         </button>
     );

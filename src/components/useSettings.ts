@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { DEFAULTS, Settings, StorageArea } from './constants';
 
 async function getAll(area: StorageArea, defaults: Settings): Promise<Settings> {
@@ -19,10 +19,7 @@ export function useSettings() {
   const area: StorageArea = 'sync';
   const defaults: Settings = DEFAULTS;
 
-  const [, setSettings] = useState<Settings>(defaults);
-
   useEffect(() => {
-    getAll(area, defaults).then((data) => setSettings(data));
 
     const onChanged = (changes: { [key: string]: chrome.storage.StorageChange }, areaName: chrome.storage.AreaName) => {
       if (areaName !== area) return;
@@ -36,10 +33,6 @@ export function useSettings() {
           }
         }
       }
-
-      if (Object.keys(updated).length > 0) {
-        setSettings((prev) => ({ ...prev, ...updated }));
-      }
     };
 
     chrome.storage.onChanged.addListener(onChanged);
@@ -48,12 +41,8 @@ export function useSettings() {
     };
   }, [area, defaults]);
 
-  const save = useCallback(async (partial: Partial<Settings>) => {
-    await setPartial(area, partial);
-  }, [area]);
-
-  const setSetting = useCallback(async (key: keyof Settings, value: boolean) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const setSetting = useCallback(async <K extends keyof Settings>(key: K, value: Settings[K]) => {
     await setPartial(area, { [key]: value });
   }, [area]);
 
