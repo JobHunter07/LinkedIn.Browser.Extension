@@ -2,7 +2,7 @@ import type { ChangeEvent } from 'react';
 import { X, Github, Linkedin, Twitter, Instagram, Chrome, Mail, Star, Heart } from 'lucide-react';
 import { useSettings } from './useSettings';
 import type { Settings } from './constants';
-import './control-panel.css';
+import '../style.css';
 
 type ControlPanelProps = {
   closePanel: () => void;

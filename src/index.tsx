@@ -1,11 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import controlPanelCss from './control-panel.css?raw';
+import controlPanelCss from './style.css?raw';
 
 const HOST_ID = 'no-noise-linkedin-root';
 
 function mountApp() {
+  console.log('No Noise LinkedIn: mountApp called');
   let host = document.getElementById(HOST_ID) as HTMLElement | null;
 
   if (!host) {
@@ -29,4 +30,5 @@ function mountApp() {
   );
 }
 
+console.log('No Noise LinkedIn: Content script (src/index.tsx) loaded');
 mountApp();

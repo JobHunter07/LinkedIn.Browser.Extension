@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { initPurger } from '../../content-script';
-import ControlPanel from './ControlPanel'
-import { useSettings } from './useSettings';
-import { DEFAULTS, type Settings } from './constants';
+import { initPurger } from './services/FilterEngine';
+import ControlPanel from './components/ControlPanel';
+import { useSettings } from './components/useSettings';
+import { DEFAULTS, type Settings } from './components/constants';
 
 const icon32 = chrome.runtime.getURL('images/no-noise-linkedin-logo-dark.svg');
 

@@ -1,5 +1,5 @@
-import { type Settings } from "./src/content-script/constants";
-import { getFirstPathSegment } from "./src/content-script/App";
+import { type Settings } from "../components/constants";
+import { getFirstPathSegment } from "../App";
 
 const DEV_LOGS = false;
 
