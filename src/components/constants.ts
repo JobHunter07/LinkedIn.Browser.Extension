@@ -11,7 +11,7 @@ export const DEFAULTS: Settings = {
   disableSuggested: true,
   disableNews: true,
   disableFeed: false,
-  theme: 'LIGHT',
+  theme: 'DARK',
 };
 
 export type StorageArea = 'sync' | 'local';

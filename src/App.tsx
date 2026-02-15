@@ -95,7 +95,7 @@ export default function App() {
       className="nnl-main-container"
       data-theme={userSettings.theme}
     >
-      <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} />
+      <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} theme={userSettings.theme} />
       {showPanel && (
         <ControlPanel closePanel={() => { setShowPanel(false) }} hardRefresh={reloadExtension} userSettings={userSettings} />
       )}
