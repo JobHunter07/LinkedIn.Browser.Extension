@@ -71,6 +71,7 @@
 
 .nnl-button-icon:hover {
   transform: translateY(-1px);
+  filter: brightness(100%)
 }
 
 .nnl-button-icon.active {

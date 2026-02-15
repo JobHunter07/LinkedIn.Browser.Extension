@@ -6,6 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Switch from './Switch';
 import ControlPanelRow from './ControlPanelRow';
+import Reload from './Reload';
 
 type ControlPanelProps = {
   closePanel: () => void;
@@ -75,18 +76,7 @@ export default function ControlPanel(props: ControlPanelProps) {
         </ControlPanelRow>
       </div>
       <div className="nnl-cp-section" data-title="Troubleshooting">
-        <div className="nnl-cp-actions">
-          <button
-            type="button"
-            onClick={() => {
-              props.hardRefresh();
-              props.closePanel();
-            }}
-            className="nnl-cp-button"
-          >
-            Reload
-          </button>
-        </div>
+        <Reload closePanel={props.closePanel} hardRefresh={props.hardRefresh} />
       </div>
       <Footer />
     </div>
