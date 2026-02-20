@@ -185,8 +185,7 @@
   top: 2px;
   border: none;
   background: transparent;
-  width: 26px;
-  height: 26px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -354,6 +353,18 @@
 .nnl-cp .nnl-cp-social a:hover {
   color: var(--nnl-text-primary);
   transform: translateY(-2px);
+}
+
+.nnl-cp .nnl-cp-svg-icon {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: color .2s ease, transform .2s ease;
 }
 
 .nnl-cp .nnl-cp-pill {

@@ -1,4 +1,25 @@
-import { Heart, Star, Flame, Chrome, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Heart, Star } from 'lucide-react';
+import xIcon from '../../images/brand-svgs/x.svg';
+import linkedinIcon from '../../images/brand-svgs/linkedin.svg';
+import instagramIcon from '../../images/brand-svgs/instagram.svg';
+import protonmailIcon from '../../images/brand-svgs/protonmail.svg';
+import chromeIcon from '../../images/brand-svgs/googlechrome.svg';
+import firefoxIcon from '../../images/brand-svgs/firefoxbrowser.svg';
+
+const SvgIcon = ({ src, size, title }: { src: string; size: number; title: string }) => (
+    <span
+        className="nnl-cp-svg-icon"
+        title={title}
+        role="img"
+        aria-label={title}
+        style={{
+            width: size,
+            height: size,
+            WebkitMaskImage: `url(${src})`,
+            maskImage: `url(${src})`,
+        }}
+    />
+);
 
 export default function Footer() {
     const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
@@ -6,7 +27,7 @@ export default function Footer() {
         <div className="nnl-cp-section nnl-cp-footer">
             <div className="nnl-cp-desc">
                 <div className="nnl-cp-social-text">
-                    Made by <a href="https://github.com/karan51ngh" target="_blank" rel="noopener noreferrer">@karan51ngh</a> with <Heart size={12} color="#ec4899" fill="#ec4899" strokeWidth={2} />
+                    Made by <a href="https://github.com/karan51ngh" target="_blank" rel="noopener noreferrer">@karan51ngh</a> with <Heart size={12} color="#ec4899" fill="#ec4899" strokeWidth={2.5} />
                 </div>
             </div>
             <div className="nnl-cp-footer-content">
@@ -19,7 +40,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         title="Star this repo on GitHub"
                     >
-                        <Star size={14} fill="currentColor" strokeWidth={2} />
+                        <Star size={16} fill="currentColor" strokeWidth={2.5} />
                         <span>Star</span>
                     </a>
                     <a
@@ -29,7 +50,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         title="Write a review on Chrome Web Store"
                     >
-                        {isFirefox ? (<Flame size={14} strokeWidth={2} />) : (<Chrome size={14} strokeWidth={2} />)}
+                        {isFirefox ? (<SvgIcon src={chrome.runtime.getURL(firefoxIcon)} size={16} title="Firefox" />) : (<SvgIcon src={chrome.runtime.getURL(chromeIcon)} size={16} title="Chrome" />)}
                         <span>Review</span>
                     </a>
                 </div>
@@ -37,20 +58,20 @@ export default function Footer() {
                 <div className="nnl-cp-divider"></div>
                 <div className="nnl-cp-social">
                     {[
-                        { Icon: Twitter, href: 'https://twitter.com/karan5ingh', Title: 'X / Twitter' },
-                        { Icon: Linkedin, href: 'https://www.linkedin.com/in/karan51ngh', Title: 'LinkedIn' },
-                        { Icon: Instagram, href: 'https://www.instagram.com/karan51ngh', Title: 'Instagram' },
-                        { Icon: Mail, href: 'mailto:karansingh9535@gmail.com', Title: 'Email' },
-                    ].map(({ Icon, href, Title }, i) => (
+                        { icon: linkedinIcon, href: 'https://www.linkedin.com/in/karan51ngh', title: 'LinkedIn' },
+                        { icon: instagramIcon, href: 'https://www.instagram.com/karan51ngh', title: 'Instagram' },
+                        { icon: protonmailIcon, href: 'mailto:karansingh9535@gmail.com', title: 'Email' },
+                        { icon: xIcon, href: 'https://twitter.com/karan5ingh', title: 'X / Twitter' },
+                    ].map(({ icon, href, title }, i) => (
                         <a
                             key={i}
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={Title}
-                            title={Title}
+                            aria-label={title}
+                            title={title}
                         >
-                            <Icon size={18} strokeWidth={2} />
+                            <SvgIcon src={chrome.runtime.getURL(icon)} size={16} title={title} />
                         </a>
                     ))}
                 </div>
