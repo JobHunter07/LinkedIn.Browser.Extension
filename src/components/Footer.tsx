@@ -1,6 +1,7 @@
-import { Heart, Star, Chrome, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Heart, Star, Flame, Chrome, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
 
 export default function Footer() {
+    const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
     return (
         <div className="nnl-cp-section nnl-cp-footer">
             <div className="nnl-cp-desc">
@@ -28,7 +29,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         title="Write a review on Chrome Web Store"
                     >
-                        <Chrome size={14} strokeWidth={2} />
+                        {isFirefox ? (<Flame size={14} strokeWidth={2} />) : (<Chrome size={14} strokeWidth={2} />)}
                         <span>Review</span>
                     </a>
                 </div>
@@ -39,7 +40,7 @@ export default function Footer() {
                         { Icon: Twitter, href: 'https://twitter.com/karan5ingh', Title: 'X / Twitter' },
                         { Icon: Linkedin, href: 'https://www.linkedin.com/in/karan51ngh', Title: 'LinkedIn' },
                         { Icon: Instagram, href: 'https://www.instagram.com/karan51ngh', Title: 'Instagram' },
-                        { Icon: Mail, href: 'karansingh9535@gmail.com', Title: 'Email' },
+                        { Icon: Mail, href: 'mailto:karansingh9535@gmail.com', Title: 'Email' },
                     ].map(({ Icon, href, Title }, i) => (
                         <a
                             key={i}
