@@ -34,5 +34,11 @@
         "https://www.linkedin.com/*"
       ]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "no-noise-linkedin@karan51ngh.github.io",
+      "strict_min_version": "109.0"
+    }
+  }
 }

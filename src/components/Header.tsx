@@ -20,9 +20,9 @@ export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) 
                 title={isDark ? "Light mode" : "Dark mode"}
             >
                 {isDark ? (
-                    <Moon size={14} strokeWidth={2.5} />
+                    <Moon size={18} strokeWidth={2} />
                 ) : (
-                    <Sun size={14} strokeWidth={2.5} />
+                    <Sun size={18} strokeWidth={2} />
                 )}
             </button>
             <div className="nnl-cp-title">
@@ -36,7 +36,7 @@ export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) 
                 aria-label="Close panel"
                 title="Close"
             >
-                <X size={14} strokeWidth={2.5} />
+                <X size={18} strokeWidth={2} />
             </button>
         </div>
     );

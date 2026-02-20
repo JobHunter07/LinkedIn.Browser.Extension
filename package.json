@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:firefox": "FIREFOX=true vite",
     "build": "tsc && vite build",
+    "build:firefox": "tsc && FIREFOX=true vite build",
     "preview": "vite preview"
   },
   "dependencies": {

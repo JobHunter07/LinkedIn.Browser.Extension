@@ -35,7 +35,7 @@ export default function ControlPanel(props: ControlPanelProps) {
       <div className="nnl-cp-section" data-title="LinkedIn Feed">
         <ControlPanelRow
           primaryText={<span>Disable <strong>Promoted</strong> Posts</span>}
-          secondaryText="Hide ads and sponsored content in your feed."
+          secondaryText="Block Promoted posts from your feed."
         >
           <Switch
             id="nnl-promoted"
@@ -47,7 +47,7 @@ export default function ControlPanel(props: ControlPanelProps) {
 
         <ControlPanelRow
           primaryText={<span>Disable <strong>Suggested</strong> Posts</span>}
-          secondaryText="Remove Suggested posts like &quot;Because you follow&quot; or &quot;You might like&quot;."
+          secondaryText="Block Suggested posts from your feed."
         >
           <Switch
             id="nnl-suggested"
@@ -58,8 +58,8 @@ export default function ControlPanel(props: ControlPanelProps) {
         </ControlPanelRow>
 
         <ControlPanelRow
-          primaryText={<span><strong>Focus Mode:</strong> Disable LinkedIn Feed</span>}
-          secondaryText="Block the home feed for distraction‑free networking."
+          primaryText={<span><strong>Focus Mode:</strong></span>}
+          secondaryText="Hide LinkedIn home feed."
         >
           <Switch
             id="nnl-feed"
@@ -71,8 +71,8 @@ export default function ControlPanel(props: ControlPanelProps) {
       </div>
       <div className="nnl-cp-section" data-title="Site-Wide Settings">
         <ControlPanelRow
-          primaryText="Disable LinkedIn News and Ad Sections"
-          secondaryText="Block the LinkedIn News and Ad sidebars."
+          primaryText="News & Ad Sections"
+          secondaryText="Remove LinkedIn News & Ad sidebars."
         >
           <Switch
             id="nnl-news"
