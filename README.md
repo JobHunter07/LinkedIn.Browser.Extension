@@ -5,7 +5,7 @@
 ![No Noise LinkedIn Logo](https://raw.githubusercontent.com/karan51ngh/no-noise-linkedin/main/assets/4.png)
 
 
-## ✨ Features
+## 🚀 Features
 
 - 🧹 Removes **Suggested** and **Promoted** Posts from your LinkedIn feed.
 - ❌ Block **LinkedIn News** and ad modules across the site.
