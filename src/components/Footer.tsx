@@ -6,20 +6,25 @@ import protonmailIcon from '../../images/brand-svgs/protonmail.svg';
 import chromeIcon from '../../images/brand-svgs/googlechrome.svg';
 import firefoxIcon from '../../images/brand-svgs/firefoxbrowser.svg';
 
-const SvgIcon = ({ src, size, title }: { src: string; size: number; title: string }) => (
-    <span
-        className="nnl-cp-svg-icon"
-        title={title}
-        role="img"
-        aria-label={title}
-        style={{
-            width: size,
-            height: size,
-            WebkitMaskImage: `url(${src})`,
-            maskImage: `url(${src})`,
-        }}
-    />
-);
+const SvgIcon = ({ src, size, title }: { src: string; size: number; title: string }) => {
+    const maskUrl = src.startsWith('data:') || src.startsWith('http') || src.startsWith('chrome-extension:')
+        ? src
+        : chrome.runtime.getURL(src);
+    return (
+        <span
+            className="nnl-cp-svg-icon"
+            title={title}
+            role="img"
+            aria-label={title}
+            style={{
+                width: size,
+                height: size,
+                WebkitMaskImage: `url("${maskUrl}")`,
+                maskImage: `url("${maskUrl}")`,
+            }}
+        />
+    );
+};
 
 export default function Footer() {
     const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
@@ -50,7 +55,7 @@ export default function Footer() {
                         rel="noopener noreferrer"
                         title="Write a review on Chrome Web Store"
                     >
-                        {isFirefox ? (<SvgIcon src={chrome.runtime.getURL(firefoxIcon)} size={16} title="Firefox" />) : (<SvgIcon src={chrome.runtime.getURL(chromeIcon)} size={16} title="Chrome" />)}
+                        {isFirefox ? (<SvgIcon src={firefoxIcon} size={16} title="Firefox" />) : (<SvgIcon src={chromeIcon} size={16} title="Chrome" />)}
                         <span>Review</span>
                     </a>
                 </div>
@@ -71,7 +76,7 @@ export default function Footer() {
                             aria-label={title}
                             title={title}
                         >
-                            <SvgIcon src={chrome.runtime.getURL(icon)} size={16} title={title} />
+                            <SvgIcon src={icon} size={16} title={title} />
                         </a>
                     ))}
                 </div>
