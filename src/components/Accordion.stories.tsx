@@ -9,6 +9,20 @@ const meta: Meta<typeof Accordion> = {
     title: 'Raw JSON',
     children: 'Expandable content section'
   },
+  argTypes: {
+    title: {
+      control: 'text',
+      description: 'Summary label shown in the disclosure header.'
+    },
+    children: {
+      control: 'text',
+      description: 'Content rendered inside the expanded panel.'
+    },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Whether the accordion starts in the open state.'
+    }
+  },
   parameters: {
     docs: {
       description: {

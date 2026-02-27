@@ -4,14 +4,35 @@ import { CssBaseline, ThemeProvider, createTheme, responsiveFontSizes } from '@m
 import '../src/style.css';
 
 if (!globalThis.chrome) {
-  const storageArea = {
-    get(defaults: Record<string, unknown>, callback: (items: Record<string, unknown>) => void) {
-      callback(defaults);
-    },
-    set(_partial: Record<string, unknown>, callback: () => void) {
-      callback();
-    }
-  };
+  // In-memory stores so set() changes are visible to subsequent get() calls.
+  const stores: Record<string, Record<string, unknown>> = { sync: {}, local: {} };
+
+  // Listeners registered via chrome.storage.onChanged.addListener.
+  type OnChangedListener = (
+    changes: Record<string, { oldValue?: unknown; newValue: unknown }>,
+    areaName: string
+  ) => void;
+  const onChangedListeners: OnChangedListener[] = [];
+
+  function makeStorageArea(areaName: string) {
+    return {
+      get(defaults: Record<string, unknown>, callback: (items: Record<string, unknown>) => void) {
+        callback({ ...defaults, ...stores[areaName] });
+      },
+      set(partial: Record<string, unknown>, callback: () => void) {
+        const changes: Record<string, { oldValue?: unknown; newValue: unknown }> = {};
+        for (const key of Object.keys(partial)) {
+          changes[key] = { oldValue: stores[areaName][key], newValue: partial[key] };
+          stores[areaName][key] = partial[key];
+        }
+        // Notify all registered onChanged listeners so React state updates propagate.
+        for (const listener of onChangedListeners) {
+          listener(changes, areaName);
+        }
+        callback();
+      }
+    };
+  }
 
   (globalThis as unknown as { chrome: typeof chrome }).chrome = {
     runtime: {
@@ -26,13 +47,16 @@ if (!globalThis.chrome) {
       sendMessage: (() => Promise.resolve(undefined)) as unknown as typeof chrome.runtime.sendMessage
     },
     storage: {
-      sync: storageArea,
-      local: storageArea,
+      sync: makeStorageArea('sync'),
+      local: makeStorageArea('local'),
       onChanged: {
-        addListener: () => undefined,
-        removeListener: () => undefined,
-        hasListener: () => false,
-        hasListeners: () => false
+        addListener: (listener: OnChangedListener) => { onChangedListeners.push(listener); },
+        removeListener: (listener: OnChangedListener) => {
+          const idx = onChangedListeners.indexOf(listener);
+          if (idx !== -1) onChangedListeners.splice(idx, 1);
+        },
+        hasListener: (listener: OnChangedListener) => onChangedListeners.includes(listener),
+        hasListeners: () => onChangedListeners.length > 0
       }
     }
   } as unknown as typeof chrome;

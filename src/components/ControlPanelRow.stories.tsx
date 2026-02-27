@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import ControlPanelRow from './ControlPanelRow';
 import Switch from './Switch';
@@ -8,8 +9,29 @@ const meta: Meta<typeof ControlPanelRow> = {
   tags: ['autodocs'],
   args: {
     primaryText: 'News & Ad Sections',
-    secondaryText: 'Remove LinkedIn News & Ad sidebars.',
-    children: <Switch id="row-switch" checked={true} onChange={() => undefined} />
+    secondaryText: 'Remove LinkedIn News & Ad sidebars.'
+  },
+  argTypes: {
+    primaryText: {
+      control: 'text',
+      description: 'Primary label for the row. Accepts plain text or a React node.'
+    },
+    secondaryText: {
+      control: 'text',
+      description: 'Helper description shown below the primary label.'
+    },
+    children: {
+      control: false,
+      description: 'The interactive control (e.g. Switch) rendered on the trailing edge of the row.'
+    }
+  },
+  render: (args) => {
+    const [checked, setChecked] = useState(true);
+    return (
+      <ControlPanelRow {...args}>
+        <Switch id="row-switch" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+      </ControlPanelRow>
+    );
   },
   parameters: {
     docs: {

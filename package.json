@@ -10,7 +10,8 @@
     "build:firefox": "node scripts/run-env.js FIREFOX=true -- \"tsc && vite build\" && node scripts/strip-use-dynamic-url.js",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "storybook:test": "node scripts/storybook-zero-error-check.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

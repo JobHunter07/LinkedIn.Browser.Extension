@@ -10,6 +10,21 @@ const meta: Meta<typeof NNLButton> = {
     onToggle: () => undefined,
     theme: 'DARK'
   },
+  argTypes: {
+    showPanel: {
+      control: 'boolean',
+      description: 'When true the extension panel is open — applies the active visual state to the icon.'
+    },
+    onToggle: {
+      action: 'onToggle',
+      description: 'Called when the user clicks the button to open or close the panel.'
+    },
+    theme: {
+      control: 'radio',
+      options: ['DARK', 'LIGHT'],
+      description: 'Controls which logo variant (dark / light) is rendered.'
+    }
+  },
   parameters: {
     docs: {
       description: {

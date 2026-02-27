@@ -1,14 +1,13 @@
 import { X, Moon, Sun } from 'lucide-react';
-import type { Settings } from './constants';
 
 type HeaderProps = {
     closePanel: () => void;
-    theme: Settings['theme'];
+    theme: 'LIGHT' | 'DARK';
     toggleTheme: () => void;
 };
 
 export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) {
-    const isDark = theme === 'LIGHT';
+    const isDark = theme === 'DARK';
 
     return (
         <div className="nnl-cp-header">

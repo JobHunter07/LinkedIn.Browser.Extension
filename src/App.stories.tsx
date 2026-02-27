@@ -5,6 +5,11 @@ const meta: Meta<typeof App> = {
   title: 'Pages/App',
   component: App,
   tags: ['autodocs'],
+  argTypes: {
+    // App manages all state internally via chrome.storage; no direct props are
+    // accepted.  The controls panel shows this context so readers understand why
+    // the playground is empty rather than broken.
+  },
   parameters: {
     docs: {
       description: {

@@ -5,6 +5,11 @@ const meta: Meta<typeof SaveJobButton> = {
   title: 'Atoms/SaveJobButton',
   component: SaveJobButton,
   tags: ['autodocs'],
+  argTypes: {
+    // SaveJobButton accepts no props — it reads the page DOM on click and posts
+    // an NNL_SAVED_JOB message to window.  Use ControlPanel stories to test the
+    // full save + preview flow end-to-end.
+  },
   parameters: {
     docs: {
       description: {

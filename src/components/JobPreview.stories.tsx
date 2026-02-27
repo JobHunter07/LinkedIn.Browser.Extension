@@ -14,6 +14,36 @@ const meta: Meta<typeof JobPreview> = {
     onCopy: () => undefined,
     embedded: false
   },
+  argTypes: {
+    title: {
+      control: 'text',
+      description: 'Job title extracted from the LinkedIn job page.'
+    },
+    company: {
+      control: 'text',
+      description: 'Company name extracted from the listing.'
+    },
+    url: {
+      control: 'text',
+      description: 'Canonical LinkedIn job URL (tracking params stripped).'
+    },
+    raw: {
+      control: 'text',
+      description: 'Raw JSON payload {title, company, url} captured at save time.'
+    },
+    embedded: {
+      control: 'boolean',
+      description: 'When true renders inline inside the panel instead of a modal dialog.'
+    },
+    onClose: {
+      action: 'onClose',
+      description: 'Called when the user dismisses the preview.'
+    },
+    onCopy: {
+      action: 'onCopy',
+      description: 'Called when the user copies the raw JSON payload.'
+    }
+  },
   parameters: {
     docs: {
       description: {

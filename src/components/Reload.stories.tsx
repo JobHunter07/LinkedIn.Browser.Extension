@@ -9,6 +9,16 @@ const meta: Meta<typeof Reload> = {
     closePanel: () => undefined,
     hardRefresh: () => undefined
   },
+  argTypes: {
+    closePanel: {
+      action: 'closePanel',
+      description: 'Called after the refresh to close the panel.'
+    },
+    hardRefresh: {
+      action: 'hardRefresh',
+      description: 'Triggers a hard reload of the browser extension runtime.'
+    }
+  },
   parameters: {
     docs: {
       description: {

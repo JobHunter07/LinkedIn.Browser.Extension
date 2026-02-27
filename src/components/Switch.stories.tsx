@@ -12,6 +12,24 @@ const meta: Meta<typeof Switch> = {
     checked: true,
     onChange: () => undefined
   },
+  argTypes: {
+    checked: {
+      control: 'boolean',
+      description: 'Current on/off state of the toggle.'
+    },
+    id: {
+      control: 'text',
+      description: 'HTML id attribute — must be unique per page and links the label to the input.'
+    },
+    name: {
+      control: 'text',
+      description: 'HTML name attribute for the underlying checkbox input.'
+    },
+    onChange: {
+      action: 'onChange',
+      description: 'Fired when the user toggles the switch.'
+    }
+  },
   render: (args) => {
     const [checked, setChecked] = useState(args.checked);
     return <Switch {...args} checked={checked} onChange={(event) => setChecked(event.target.checked)} />;

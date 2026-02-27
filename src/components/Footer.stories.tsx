@@ -5,6 +5,11 @@ const meta: Meta<typeof Footer> = {
   title: 'Organisms/Footer',
   component: Footer,
   tags: ['autodocs'],
+  argTypes: {
+    // Footer accepts no props — it derives browser type from navigator.userAgent
+    // and renders static links.  Use the global Color Mode toolbar above to
+    // preview the dark / light theme variants.
+  },
   parameters: {
     docs: {
       description: {
