@@ -5,6 +5,7 @@ import JobPreview from './components/JobPreview';
 import NNLButton from './components/NNLButton';
 import { useSettings } from './components/useSettings';
 import { DEFAULTS, type Settings } from './components/constants';
+import { useDragPosition } from './components/useDragPosition';
 
 
 export function getFirstPathSegment(urlString: string): string | null {
@@ -24,6 +25,7 @@ export default function App() {
   const [savedJob, setSavedJob] = useState<null | { title?: string; company?: string; url?: string; raw?: string }>(null);
   const { area, getAll } = useSettings();
   const [userSettings, setUserSettings] = useState<Settings>(DEFAULTS);
+  const { position, onDragStart } = useDragPosition();
 
   useEffect(() => {
     updateUserSettings();
@@ -114,6 +116,7 @@ export default function App() {
     <div
       className="nnl-main-container"
       data-theme={userSettings.theme}
+      style={{ left: position.x, top: position.y }}
     >
       <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} theme={userSettings.theme} />
       {showPanel && (
@@ -123,6 +126,7 @@ export default function App() {
           userSettings={userSettings}
           savedJob={savedJob}
           clearSavedJob={() => setSavedJob(null)}
+          onDragStart={onDragStart}
         />
       )}
     </div>

@@ -19,6 +19,7 @@ type ControlPanelProps = {
   userSettings: Settings;
   savedJob?: { title?: string; company?: string; url?: string; raw?: string } | null;
   clearSavedJob?: () => void;
+  onDragStart?: (e: React.MouseEvent<Element>) => void;
 };
 
 export default function ControlPanel(props: ControlPanelProps) {
@@ -47,6 +48,7 @@ export default function ControlPanel(props: ControlPanelProps) {
       <Header
         closePanel={props.closePanel}
         theme={props.userSettings.theme}
+        onDragStart={props.onDragStart}
         toggleTheme={async () => {
           const newTheme = props.userSettings.theme === 'DARK' ? 'LIGHT' : 'DARK';
           await setSetting('theme', newTheme);

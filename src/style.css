@@ -97,8 +97,6 @@
 /* Control Panel styles extracted from ControlPanel.tsx inline <style> block */
 .nnl-main-container {
   position: fixed;
-  bottom: 32px;
-  left: 32px;
   z-index: 2147483647;
   pointer-events: auto;
 }
@@ -131,9 +129,9 @@
 }
 
 .nnl-cp {
-  position: fixed;
-  bottom: 76px;
-  left: 32px;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
   width: 280px;
   background: var(--nnl-surface);
   color: var(--nnl-text-primary);
@@ -158,6 +156,19 @@
   margin-bottom: 6px;
   padding: 2px 28px 8px 28px;
   text-align: center;
+}
+
+.nnl-cp .nnl-cp-header--draggable {
+  cursor: grab;
+  user-select: none;
+}
+
+.nnl-cp .nnl-cp-header--draggable:active {
+  cursor: grabbing;
+}
+
+.nnl-cp .nnl-cp-header--draggable button {
+  cursor: pointer;
 }
 
 .nnl-cp .nnl-cp-title {

@@ -1,16 +1,21 @@
 import { X, Moon, Sun } from 'lucide-react';
+import type { MouseEvent } from 'react';
 
 type HeaderProps = {
     closePanel: () => void;
     theme: 'LIGHT' | 'DARK';
     toggleTheme: () => void;
+    onDragStart?: (e: MouseEvent) => void;
 };
 
-export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) {
+export default function Header({ closePanel, theme, toggleTheme, onDragStart }: HeaderProps) {
     const isDark = theme === 'DARK';
 
     return (
-        <div className="nnl-cp-header">
+        <div
+            className={`nnl-cp-header${onDragStart ? ' nnl-cp-header--draggable' : ''}`}
+            onMouseDown={onDragStart}
+        >
             <button
                 type="button"
                 onClick={toggleTheme}
