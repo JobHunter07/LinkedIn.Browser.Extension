@@ -151,10 +151,6 @@
   font-size: 13px;
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  max-height: calc(100vh - 108px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
 }
 
 .nnl-cp .nnl-cp-header {
@@ -215,6 +211,40 @@
 
 .nnl-cp .nnl-cp-theme-toggle {
   left: 2px;
+}
+
+.nnl-cp .nnl-cp-body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Control tab panel — stays in normal flow to define the body height.
+   When inactive it is invisible but still occupies its natural space. */
+.nnl-cp .nnl-cp-tab-panel--control {
+  visibility: hidden;
+  pointer-events: none;
+}
+.nnl-cp .nnl-cp-tab-panel--control.active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Saved tab panel — absolutely overlays the body area.
+   Scrolls vertically only if content is taller than the body. */
+.nnl-cp .nnl-cp-tab-panel--overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: var(--nnl-surface);
+}
+.nnl-cp .nnl-cp-tab-panel--overlay.active {
+  display: block;
 }
 
 .nnl-cp .nnl-cp-section {

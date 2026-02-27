@@ -77,82 +77,86 @@ export default function ControlPanel(props: ControlPanelProps) {
       </div>
 
       {/* Tab pages */}
-      {activeTab === 'control' && (
-      <div className="nnl-cp-section" data-title="LinkedIn Feed">
-        <ControlPanelRow
-          primaryText={<span>Disable <strong>Promoted</strong> Posts</span>}
-          secondaryText="Block Promoted posts from your feed."
-        >
-          <Switch
-            id="nnl-promoted"
-            name="nnl-promoted"
-            checked={props.userSettings.disablePromoted}
-            onChange={toggle('disablePromoted')}
-          />
-        </ControlPanelRow>
+      <div className="nnl-cp-body">
 
-        <ControlPanelRow
-          primaryText={<span>Disable <strong>Suggested</strong> Posts</span>}
-          secondaryText="Block Suggested posts from your feed."
-        >
-          <Switch
-            id="nnl-suggested"
-            name="nnl-suggested"
-            checked={props.userSettings.disableSuggested}
-            onChange={toggle('disableSuggested')}
-          />
-        </ControlPanelRow>
+        {/* Control tab — always rendered to define the body height; hidden when inactive */}
+        <div className={`nnl-cp-tab-panel nnl-cp-tab-panel--control${activeTab === 'control' ? ' active' : ''}`} aria-hidden={activeTab !== 'control'}>
+          <div className="nnl-cp-section" data-title="LinkedIn Feed">
+            <ControlPanelRow
+              primaryText={<span>Disable <strong>Promoted</strong> Posts</span>}
+              secondaryText="Block Promoted posts from your feed."
+            >
+              <Switch
+                id="nnl-promoted"
+                name="nnl-promoted"
+                checked={props.userSettings.disablePromoted}
+                onChange={toggle('disablePromoted')}
+              />
+            </ControlPanelRow>
 
-        <ControlPanelRow
-          primaryText={<span><strong>Focus Mode:</strong></span>}
-          secondaryText="Hide LinkedIn home feed."
-        >
-          <Switch
-            id="nnl-feed"
-            name="nnl-feed"
-            checked={props.userSettings.disableFeed}
-            onChange={toggle('disableFeed')}
-          />
-        </ControlPanelRow>
-      </div>
-      )}
-      {activeTab === 'control' && (
-      <div className="nnl-cp-section" data-title="Site-Wide Settings">
-        <ControlPanelRow
-          primaryText="News & Ad Sections"
-          secondaryText="Remove LinkedIn News & Ad sidebars."
-        >
-          <Switch
-            id="nnl-news"
-            name="nnl-news"
-            checked={props.userSettings.disableNews}
-            onChange={toggle('disableNews')}
-          />
-        </ControlPanelRow>
-      </div>
-      )}
-      {activeTab === 'control' && (
-      <div className="nnl-cp-section" data-title="Troubleshooting">
-        <Reload closePanel={props.closePanel} hardRefresh={props.hardRefresh} />
-      </div>
-      )}
+            <ControlPanelRow
+              primaryText={<span>Disable <strong>Suggested</strong> Posts</span>}
+              secondaryText="Block Suggested posts from your feed."
+            >
+              <Switch
+                id="nnl-suggested"
+                name="nnl-suggested"
+                checked={props.userSettings.disableSuggested}
+                onChange={toggle('disableSuggested')}
+              />
+            </ControlPanelRow>
 
-      {activeTab === 'saved' && (
-        <div className="nnl-cp-section" data-title="Saved Job Preview">
-          {props.savedJob ? (
-            <JobPreview
-              title={props.savedJob.title}
-              company={props.savedJob.company}
-              url={props.savedJob.url}
-              raw={props.savedJob.raw}
-              onClose={props.clearSavedJob}
-              embedded
-            />
-          ) : (
-            <div style={{ padding: 12 }}>No saved job to preview.</div>
-          )}
+            <ControlPanelRow
+              primaryText={<span><strong>Focus Mode:</strong></span>}
+              secondaryText="Hide LinkedIn home feed."
+            >
+              <Switch
+                id="nnl-feed"
+                name="nnl-feed"
+                checked={props.userSettings.disableFeed}
+                onChange={toggle('disableFeed')}
+              />
+            </ControlPanelRow>
+          </div>
+
+          <div className="nnl-cp-section" data-title="Site-Wide Settings">
+            <ControlPanelRow
+              primaryText="News & Ad Sections"
+              secondaryText="Remove LinkedIn News & Ad sidebars."
+            >
+              <Switch
+                id="nnl-news"
+                name="nnl-news"
+                checked={props.userSettings.disableNews}
+                onChange={toggle('disableNews')}
+              />
+            </ControlPanelRow>
+          </div>
+
+          <div className="nnl-cp-section" data-title="Troubleshooting">
+            <Reload closePanel={props.closePanel} hardRefresh={props.hardRefresh} />
+          </div>
         </div>
-      )}
+
+        {/* Saved tab — absolutely overlays the body, scrolls if content is taller */}
+        <div className={`nnl-cp-tab-panel nnl-cp-tab-panel--overlay${activeTab === 'saved' ? ' active' : ''}`} aria-hidden={activeTab !== 'saved'}>
+          <div className="nnl-cp-section" data-title="Saved Job Preview">
+            {props.savedJob ? (
+              <JobPreview
+                title={props.savedJob.title}
+                company={props.savedJob.company}
+                url={props.savedJob.url}
+                raw={props.savedJob.raw}
+                onClose={props.clearSavedJob}
+                embedded
+              />
+            ) : (
+              <div style={{ padding: 12 }}>No saved job to preview.</div>
+            )}
+          </div>
+        </div>
+
+      </div>
 
       <Footer />
     </div>
