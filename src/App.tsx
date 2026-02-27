@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { initPurger } from './services/FilterEngine';
 import ControlPanel from './components/ControlPanel';
+import JobPreview from './components/JobPreview';
 import NNLButton from './components/NNLButton';
 import { useSettings } from './components/useSettings';
 import { DEFAULTS, type Settings } from './components/constants';
@@ -20,6 +21,7 @@ export function getFirstPathSegment(urlString: string): string | null {
 
 export default function App() {
   const [showPanel, setShowPanel] = useState(false);
+  const [savedJob, setSavedJob] = useState<null | { title?: string; company?: string; url?: string; raw?: string }>(null);
   const { area, getAll } = useSettings();
   const [userSettings, setUserSettings] = useState<Settings>(DEFAULTS);
 
@@ -67,6 +69,23 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      try {
+        const msg = e.data;
+        if (!msg) return;
+        // Expect messages of shape: { type: 'NNL_SAVED_JOB', payload: { title, company, url, raw } }
+        if (msg.type === 'NNL_SAVED_JOB' && msg.payload) {
+          setSavedJob(msg.payload);
+        }
+      } catch (err) {
+        // ignore
+      }
+    };
+    window.addEventListener('message', handler);
+    return () => window.removeEventListener('message', handler);
+  }, []);
+
+  useEffect(() => {
     initPurger(userSettings);
   }, [JSON.stringify(userSettings)]);
 
@@ -98,6 +117,18 @@ export default function App() {
       <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} theme={userSettings.theme} />
       {showPanel && (
         <ControlPanel closePanel={() => { setShowPanel(false) }} hardRefresh={reloadExtension} userSettings={userSettings} />
+      )}
+      {savedJob && (
+        <div style={{ position: 'fixed', bottom: 76, right: 32, height: 420, zIndex: 2147483647 }}>
+          <JobPreview
+            title={savedJob.title}
+            company={savedJob.company}
+            url={savedJob.url}
+            raw={savedJob.raw}
+            onClose={() => setSavedJob(null)}
+            onCopy={() => { /* preserve hook: no-op by default */ }}
+          />
+        </div>
       )}
     </div>
   );

@@ -438,3 +438,94 @@
   height: 18px;
   background-color: var(--nnl-gray-light);
 }
+
+/* Job Preview Panel - Light themed, header + scrollable content + footer */
+.jobViewRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 360px;
+  background: var(--nnl-surface);
+  color: var(--nnl-text-primary);
+  border: 1px solid color-mix(in srgb, var(--nnl-black) 6%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--nnl-black) 12%, transparent);
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.jobViewHeader {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--nnl-black) 4%, transparent);
+  background: var(--nnl-surface);
+}
+
+.jobViewHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.jobViewCloseBtn {
+  border: none;
+  background: transparent;
+  color: var(--nnl-text-secondary);
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.jobViewContent {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 12px;
+  min-height: 0;
+  background: linear-gradient(0deg, transparent, transparent);
+}
+
+.jobField {
+  margin-bottom: 10px;
+}
+.jobFieldLabel { color: var(--nnl-text-muted); font-size: 12px; margin-bottom: 4px; }
+.jobFieldValue { color: var(--nnl-text-primary); font-weight: 600; word-break: break-word; }
+
+.jobViewRaw { margin-top: 8px; }
+.jobViewRawLabel { color: var(--nnl-text-muted); font-size: 12px; margin-bottom: 6px; }
+.jobViewRawCode {
+  background: color-mix(in srgb, var(--nnl-gray-light) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nnl-black) 6%, transparent);
+  padding: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.jobViewFooter {
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  border-top: 1px solid color-mix(in srgb, var(--nnl-black) 4%, transparent);
+  background: var(--nnl-surface);
+}
+
+.jobViewActions { display: flex; gap: 8px; justify-content: flex-end; }
+.jobPrimaryButton {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--nnl-accent); color: var(--nnl-surface);
+  border: 1px solid var(--nnl-accent);
+  padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600;
+}
+.jobPrimaryButton:hover { filter: brightness(.97); }
+.jobSecondaryButton {
+  background: transparent; color: var(--nnl-text-primary);
+  border: 1px solid color-mix(in srgb, var(--nnl-black) 6%, transparent);
+  padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600;
+}
+
