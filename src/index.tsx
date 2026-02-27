@@ -1,5 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import controlPanelCss from './style.css?raw';
 
@@ -12,20 +14,43 @@ function mountApp() {
   if (!host) {
     host = document.createElement('div');
     host.id = HOST_ID;
-    // Optional: small hint to other scripts
     host.setAttribute('data-nnl-host', '1');
     document.body.append(host);
   }
 
   const shadow = (host.shadowRoot as ShadowRoot) || host.attachShadow({ mode: 'open' });
-  const styleEl = document.createElement('style');
-  styleEl.textContent = controlPanelCss;
-  shadow.append(styleEl);
-  const root = createRoot(shadow);
+
+  // Inject our own CSS into the shadow root (only once)
+  if (!shadow.querySelector('style[data-nnl]')) {
+    const styleEl = document.createElement('style');
+    styleEl.setAttribute('data-nnl', '1');
+    styleEl.textContent = controlPanelCss;
+    shadow.append(styleEl);
+  }
+
+  // Mount React into a child container so the shadow root itself is not the React root
+  let container = shadow.querySelector<HTMLDivElement>('div[data-nnl-mount]');
+  if (!container) {
+    container = document.createElement('div');
+    container.setAttribute('data-nnl-mount', '1');
+    shadow.append(container);
+  }
+
+  // Configure emotion to inject MUI/emotion styles into the shadow root,
+  // not into document.head — this gives full CSS isolation from the host page.
+  const emotionCache = createCache({
+    key: 'nnl',
+    container: shadow as unknown as HTMLElement,
+    prepend: true,
+  });
+
+  const root = createRoot(container);
 
   root.render(
     <React.StrictMode>
-      <App />
+      <CacheProvider value={emotionCache}>
+        <App />
+      </CacheProvider>
     </React.StrictMode>,
   );
 }

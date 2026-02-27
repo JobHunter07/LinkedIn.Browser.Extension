@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkIcon from '@mui/icons-material/Work';
 
 function normalizeLinkedInJobUrl(u: string) {
   try {
@@ -34,8 +35,8 @@ const SaveJobButton: React.FC = () => {
   };
 
   return (
-    <button className="nnl-save-job-btn" onClick={handleSaveJob}>
-      Save Job
+    <button className="nnl-save-job-btn" onClick={handleSaveJob} aria-label="Save Job">
+      <WorkIcon fontSize="small" />
     </button>
   );
 };

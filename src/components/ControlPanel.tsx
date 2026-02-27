@@ -10,6 +10,8 @@ import Reload from './Reload';
 import JobPreview from './JobPreview';
 import { useState, useCallback, KeyboardEvent, useEffect } from 'react';
 import SaveJobButton from './SaveJobButton';
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import ViewListIcon from '@mui/icons-material/ViewList';
 
 type ControlPanelProps = {
   closePanel: () => void;
@@ -50,18 +52,17 @@ export default function ControlPanel(props: ControlPanelProps) {
           await setSetting('theme', newTheme);
         }}
       />
-      <div className="p-2">
-        <SaveJobButton />
-      </div>
       <div className="nnl-cp-tabs" role="tablist" aria-label="Main Tabs" onKeyDown={onKeyNav}>
+        <SaveJobButton />
         <button
           role="tab"
           aria-selected={activeTab === 'control'}
           tabIndex={0}
           className={`nnl-tab-btn ${activeTab === 'control' ? 'active' : ''}`}
           onClick={() => setActiveTab('control')}
+          aria-label="Control"
         >
-          Control
+          <VolumeOffIcon fontSize="small" />
         </button>
         <button
           role="tab"
@@ -69,8 +70,9 @@ export default function ControlPanel(props: ControlPanelProps) {
           tabIndex={0}
           className={`nnl-tab-btn ${activeTab === 'saved' ? 'active' : ''}`}
           onClick={() => setActiveTab('saved')}
+          aria-label="Saved Job"
         >
-          Saved Job
+          <ViewListIcon fontSize="small" />
         </button>
       </div>
 

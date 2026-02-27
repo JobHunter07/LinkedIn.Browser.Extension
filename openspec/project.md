@@ -1,7 +1,7 @@
 # Project Overview
 
 ## Purpose
-JobHunter07 is a Manifest V3 browser extension for LinkedIn that reduces feed noise and provides job-hunt utilities.
+LinkedIn.Browser.Extension is a Manifest V3 browser extension for LinkedIn that reduces feed noise and provides job-hunt utilities.
 
 Current user-facing capabilities include:
 - Hiding Promoted posts in the feed

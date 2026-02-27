@@ -443,6 +443,57 @@
   background-color: var(--nnl-gray-light);
 }
 
+/* Tab bar: single horizontal row of icon-only buttons */
+.nnl-cp .nnl-cp-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0 6px;
+  border-bottom: 0.5px solid color-mix(in srgb, var(--nnl-separator) 12%, transparent);
+}
+
+.nnl-cp .nnl-tab-btn,
+.nnl-cp .nnl-save-job-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--nnl-text-secondary);
+  transition: background-color .2s ease, color .2s ease;
+  outline: none;
+  box-shadow: none;
+  line-height: 0;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  height: auto;
+}
+
+.nnl-cp .nnl-tab-btn svg,
+.nnl-cp .nnl-save-job-btn svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.nnl-cp .nnl-tab-btn:hover,
+.nnl-cp .nnl-save-job-btn:hover {
+  background: color-mix(in srgb, var(--nnl-gray-interactive) 12%, transparent);
+  color: var(--nnl-text-primary);
+}
+
+.nnl-cp .nnl-tab-btn.active {
+  color: var(--nnl-accent);
+  background: color-mix(in srgb, var(--nnl-accent) 10%, transparent);
+}
+
 /* Job Preview - Embedded (inside ControlPanel tab, no card wrapper) */
 .jobEmbedded {
   padding: 0 4px;
