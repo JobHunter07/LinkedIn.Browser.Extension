@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:firefox": "FIREFOX=true vite",
+    "dev:firefox": "node scripts/run-env.js FIREFOX=true -- vite",
     "build": "tsc && vite build",
-    "build:firefox": "tsc && FIREFOX=true vite build",
+    "build:firefox": "node scripts/run-env.js FIREFOX=true -- \"tsc && vite build\" && node scripts/strip-use-dynamic-url.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.9",
     "typescript": "^5.5.4",
