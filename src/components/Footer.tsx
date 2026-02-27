@@ -30,17 +30,12 @@ export default function Footer() {
     const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
     return (
         <div className="nnl-cp-section nnl-cp-footer">
-            <div className="nnl-cp-desc">
-                <div className="nnl-cp-social-text">
-                    Made by <a href="https://github.com/karan51ngh" target="_blank" rel="noopener noreferrer">@karan51ngh</a> with <Heart size={12} color="#ec4899" fill="#ec4899" strokeWidth={2.5} />
-                </div>
-            </div>
             <div className="nnl-cp-footer-content">
                 {/* Project Actions (Pills) */}
                 <div className="nnl-cp-pills">
                     <a
                         className="nnl-cp-pill"
-                        href="https://github.com/karan51ngh/no-noise-linkedin"
+                        href="https://github.com/JobHunter07/LinkedIn.Browser.Extension"
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Star this repo on GitHub"
@@ -50,23 +45,22 @@ export default function Footer() {
                     </a>
                     <a
                         className="nnl-cp-pill"
-                        href="https://chromewebstore.google.com/detail/nonoise-linkedin/hbcjelfhlljdepmifggbmhnklhmdmldn/reviews"
+                        href="https://feedback.jobhunter07.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        title="Write a review on Chrome Web Store"
+                        title="Provide your feedback"
                     >
                         {isFirefox ? (<SvgIcon src={firefoxIcon} size={16} title="Firefox" />) : (<SvgIcon src={chromeIcon} size={16} title="Chrome" />)}
-                        <span>Review</span>
+                        <span>Provide your feedback</span>
                     </a>
                 </div>
 
                 <div className="nnl-cp-divider"></div>
                 <div className="nnl-cp-social">
                     {[
-                        { icon: linkedinIcon, href: 'https://www.linkedin.com/in/karan51ngh', title: 'LinkedIn' },
-                        { icon: instagramIcon, href: 'https://www.instagram.com/karan51ngh', title: 'Instagram' },
-                        { icon: protonmailIcon, href: 'mailto:karansingh9535@gmail.com', title: 'Email' },
-                        { icon: xIcon, href: 'https://twitter.com/karan5ingh', title: 'X / Twitter' },
+                        { icon: linkedinIcon, href: 'https://www.linkedin.com/company/jobhunter07', title: 'LinkedIn' },
+                        { icon: protonmailIcon, href: 'mailto:extension@jobhunter07.com', title: 'Email' },
+                        { icon: xIcon, href: 'https://x.com/jobhunter07', title: 'X / Twitter' },
                     ].map(({ icon, href, title }, i) => (
                         <a
                             key={i}

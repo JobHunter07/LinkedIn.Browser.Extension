@@ -76,6 +76,7 @@ export default function App() {
         // Expect messages of shape: { type: 'NNL_SAVED_JOB', payload: { title, company, url, raw } }
         if (msg.type === 'NNL_SAVED_JOB' && msg.payload) {
           setSavedJob(msg.payload);
+          setShowPanel(true);
         }
       } catch (err) {
         // ignore
@@ -116,19 +117,13 @@ export default function App() {
     >
       <NNLButton showPanel={showPanel} onToggle={() => setShowPanel((prev) => !prev)} theme={userSettings.theme} />
       {showPanel && (
-        <ControlPanel closePanel={() => { setShowPanel(false) }} hardRefresh={reloadExtension} userSettings={userSettings} />
-      )}
-      {savedJob && (
-        <div style={{ position: 'fixed', bottom: 76, right: 32, height: 420, zIndex: 2147483647 }}>
-          <JobPreview
-            title={savedJob.title}
-            company={savedJob.company}
-            url={savedJob.url}
-            raw={savedJob.raw}
-            onClose={() => setSavedJob(null)}
-            onCopy={() => { /* preserve hook: no-op by default */ }}
-          />
-        </div>
+        <ControlPanel
+          closePanel={() => { setShowPanel(false) }}
+          hardRefresh={reloadExtension}
+          userSettings={userSettings}
+          savedJob={savedJob}
+          clearSavedJob={() => setSavedJob(null)}
+        />
       )}
     </div>
   );

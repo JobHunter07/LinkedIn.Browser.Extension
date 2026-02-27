@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "No Noise LinkedIn",
-  "description": "Block Ads, News, Suggested & Promoted posts on LinkedIn. Activate Focus Mode for a clean, distraction-free professional feed.",
-  "version": "2.2.1",
+  "name": "JobHunter07",
+  "description": "Tools for your Job Hunt",
+  "version": "0.0.1",
   "action": {
     "default_popup": "index.html"
   },
@@ -37,7 +37,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "no-noise-linkedin@karan51ngh.github.io",
+      "id": "extension@jobhunter07.com",
       "strict_min_version": "109.0",
       "data_collection_permissions": {
         "required": [

@@ -26,8 +26,8 @@ export default function Header({ closePanel, theme, toggleTheme }: HeaderProps) 
                 )}
             </button>
             <div className="nnl-cp-title">
-                <span className="brand">No Noise LinkedIn</span>
-                <span className="panel">Control Panel</span>
+                <span className="brand">JobHunter07</span>
+                <span className="panel">No Noise LinkedIn</span>
             </div>
             <button
                 type="button"

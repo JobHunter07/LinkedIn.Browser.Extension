@@ -7,15 +7,33 @@ import Footer from './Footer';
 import Switch from './Switch';
 import ControlPanelRow from './ControlPanelRow';
 import Reload from './Reload';
+import JobPreview from './JobPreview';
+import { useState, useCallback, KeyboardEvent, useEffect } from 'react';
+import SaveJobButton from './SaveJobButton';
 
 type ControlPanelProps = {
   closePanel: () => void;
   hardRefresh: () => void;
   userSettings: Settings;
+  savedJob?: { title?: string; company?: string; url?: string; raw?: string } | null;
+  clearSavedJob?: () => void;
 };
 
 export default function ControlPanel(props: ControlPanelProps) {
   const { setSetting } = useSettings();
+  const [activeTab, setActiveTab] = useState<'control' | 'saved'>(props.savedJob ? 'saved' : 'control');
+
+  useEffect(() => {
+    if (props.savedJob) {
+      setActiveTab('saved');
+    }
+  }, [props.savedJob]);
+
+  const onKeyNav = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      setActiveTab((prev) => (prev === 'control' ? 'saved' : 'control'));
+    }
+  }, []);
 
   const toggle =
     (key: keyof Settings) => async (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +50,32 @@ export default function ControlPanel(props: ControlPanelProps) {
           await setSetting('theme', newTheme);
         }}
       />
+      <div className="p-2">
+        <SaveJobButton />
+      </div>
+      <div className="nnl-cp-tabs" role="tablist" aria-label="Main Tabs" onKeyDown={onKeyNav}>
+        <button
+          role="tab"
+          aria-selected={activeTab === 'control'}
+          tabIndex={0}
+          className={`nnl-tab-btn ${activeTab === 'control' ? 'active' : ''}`}
+          onClick={() => setActiveTab('control')}
+        >
+          Control
+        </button>
+        <button
+          role="tab"
+          aria-selected={activeTab === 'saved'}
+          tabIndex={0}
+          className={`nnl-tab-btn ${activeTab === 'saved' ? 'active' : ''}`}
+          onClick={() => setActiveTab('saved')}
+        >
+          Saved Job
+        </button>
+      </div>
+
+      {/* Tab pages */}
+      {activeTab === 'control' && (
       <div className="nnl-cp-section" data-title="LinkedIn Feed">
         <ControlPanelRow
           primaryText={<span>Disable <strong>Promoted</strong> Posts</span>}
@@ -69,6 +113,8 @@ export default function ControlPanel(props: ControlPanelProps) {
           />
         </ControlPanelRow>
       </div>
+      )}
+      {activeTab === 'control' && (
       <div className="nnl-cp-section" data-title="Site-Wide Settings">
         <ControlPanelRow
           primaryText="News & Ad Sections"
@@ -82,9 +128,30 @@ export default function ControlPanel(props: ControlPanelProps) {
           />
         </ControlPanelRow>
       </div>
+      )}
+      {activeTab === 'control' && (
       <div className="nnl-cp-section" data-title="Troubleshooting">
         <Reload closePanel={props.closePanel} hardRefresh={props.hardRefresh} />
       </div>
+      )}
+
+      {activeTab === 'saved' && (
+        <div className="nnl-cp-section" data-title="Saved Job Preview">
+          {props.savedJob ? (
+            <JobPreview
+              title={props.savedJob.title}
+              company={props.savedJob.company}
+              url={props.savedJob.url}
+              raw={props.savedJob.raw}
+              onClose={props.clearSavedJob}
+              embedded
+            />
+          ) : (
+            <div style={{ padding: 12 }}>No saved job to preview.</div>
+          )}
+        </div>
+      )}
+
       <Footer />
     </div>
   );
